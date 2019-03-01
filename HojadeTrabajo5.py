@@ -1,6 +1,13 @@
 import simpy
 import random
 import math
+#Se importan las librerias de simpy, random y math.
+
+#Se inicia la funcion que contiene todos los procesos del programa.
+#Extraido de :Java Structures Data Structures in Java for the Principled Programmer
+#http://dept.cs.williams.edu/~bailey/JavaStructures/Book_files/JavaStructures.pdf
+#Extraido del ejemplo visto en el curso de Algoritmos y Estructura de Datos en la Universidad del Valle de Guatemala
+#Programando: Media, Varianza y Desviación Estándar en Java, C++ y python (Noviembre 2013), Exraido de: https://tpec05.blogspot.com/2013/11/programando-media-varianza-y-desviacion.html
 
 def proceso(nom, env, processcreationtime,CPU, ram, randomram, instrucciones):
     global CPUTiempo
@@ -9,8 +16,8 @@ def proceso(nom, env, processcreationtime,CPU, ram, randomram, instrucciones):
 
     horaDeRequestDeRam = env.now
     
-    with ram.get(randomram) as algo:
-        yield algo
+    with ram.get(randomram) as procesos:
+        yield procesos
 
         if instrucciones >= 3:
             while instrucciones >= 3:
@@ -57,10 +64,10 @@ env.run()
 print("Tiempo promedio por proceso es: ", CPUTiempo/cantidadDeProcesos)
 pro = CPUTiempo/cantidadDeProcesos
 
-algo = 0
+procesos = 0
 for x in desviacion:
-    algo = math.pow((x-pro), 2)
-algo = algo / (cantidadDeProcesos - 1)
-algo = math.sqrt(algo)
+    procesos = math.pow((x-pro), 2)
+procesos = procesos / (cantidadDeProcesos - 1)
+procesos = math.sqrt(procesos)
 
-print("Desviacion estandar: ", algo)
+print("Desviacion estandar: ", procesos)
